@@ -1,4 +1,4 @@
-# Spotify Cassandra 2.0 Cluster Node Image
+# Spotify Cassandra 2.1.8 Cluster Node Image
 #
 # VERSION               0.1
 #
@@ -6,7 +6,7 @@
 # If CASSANDRA_SEEDS is not set, node acts as its own seed
 # If CASSANDRA_TOKEN is not set, startup process is aborted
 
-FROM spotify/cassandra:base
+FROM mondough/docker-cassandra:base
 
 USER root
 

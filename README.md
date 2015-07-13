@@ -35,6 +35,6 @@ In the box
 Notes
 ---
 Things are still under heavy development:
-* Only Cassandra 2.0 with almost-generic config (miles away from what we actually run Cassandra
+* Only Cassandra 2.1.8 with almost-generic config (miles away from what we actually run Cassandra
   with) is supported so far.
 * There's nothing to help you with tokens and stuff.
