@@ -1,16 +1,15 @@
-# Spotify Cassandra 2.1.8 Base Image
+# Spotify Cassandra 2.1.8 Single Node Image
 #
 # VERSION               0.1
 #
-# Installs Cassandra 2.1.8 package. Does only basic configuration.
-# Tokens and seed nodes should be configured by child images.
+# Starts a Cassandra instance constituting a one node cluster.
 
-FROM dockerfile/java:oracle-java7
+FROM java:7
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # Add DataStax sources
-RUN curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
+RUN curl -L http://debian.datastax.com/debian/repo_key | apt-key add -
 RUN echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
 
 # Workaround for https://github.com/docker/docker/issues/6345
@@ -34,3 +33,13 @@ RUN rm -f /etc/security/limits.d/cassandra.conf
 EXPOSE 7199 7000 7001 9160 9042 22 8012 61621
 
 CMD [""]
+
+
+# Everything before this line was originally in spotify/docker-cassandra:base
+# Everything past this line was originally in spotify/docker-cassandra
+
+# Place single-node startup-config script
+ADD scripts/cassandra-singlenode.sh /usr/local/bin/cassandra-singlenode
+
+# Start Cassandra
+ENTRYPOINT ["cassandra-singlenode"]
